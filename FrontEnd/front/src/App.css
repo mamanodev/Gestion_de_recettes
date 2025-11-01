@@ -1,0 +1,256 @@
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #fafafa;
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.page-container{
+  display: grid;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0.3 auto;
+}
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+ 
+}
+
+.auth-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+
+input {
+  display: block;
+  width: 100%;
+  margin: 10px 0;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+button {
+  background-color: #ff7043;
+  border: none;
+  color: white;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #e64a19;
+}
+
+a {
+  color: #ff7043;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+.navbar {
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 0.7rem 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 50px  ;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #ff7043;
+}
+
+.logo span {
+  color: #222;
+}
+
+.nav-right a {
+  margin-left: 1rem;
+  color: #333;
+
+}
+
+.logout-btn {
+  margin-left: 1rem;
+  background: #ff7043;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+}
+/* Barre de recherche */
+.search-bar {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  margin: 1rem 0 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+/* Conteneur de la grille */
+.recipe-grid {
+  display: flex;
+  flex-wrap: wrap;                /* ✅ permet le retour à la ligne */
+  justify-content: center;        /* centre les cartes horizontalement */
+  gap: 1.5rem;                    /* espace entre les cartes */
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1.5rem 2rem;
+  background-color: #fafafa;
+}
+
+/* Carte individuelle */
+.recipe-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  flex: 1 1 calc(25% - 1.5rem);   /* ✅ 4 cartes par ligne environ */
+  max-width: 320px;
+  min-width: 260px;
+  justify-content: space-evenly;               /* pour que ça s’adapte aux petits écrans */
+}
+
+.recipe-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.12);
+}
+
+.recipe-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.recipe-info {
+  padding: 1rem;
+  text-align: center;
+}
+
+.recipe-info h3 {
+  margin: 0.5rem 0;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+.recipe-info .category {
+  font-size: 0.9rem;
+  color: #777;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.view-btn,
+.edit-btn {
+  text-decoration: none;
+  color: white;
+  background-color: #ff7043;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn {
+  background-color: #26a69a;
+}
+
+.view-btn:hover {
+  background-color: #e64a19;
+}
+
+.edit-btn:hover {
+  background-color: #00897b;
+}
+
+
+.recipe-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.recipe-info {
+  padding: 1rem;
+  text-align: center;
+}
+
+.recipe-info h3 {
+  margin: 0.3rem 0;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.recipe-info .category {
+  color: #777;
+  font-size: 0.9rem;
+  margin-bottom: 0.8rem;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.view-btn,
+.edit-btn {
+  text-decoration: none;
+  color: white;
+  background-color: #ff7043;
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.edit-btn {
+  background-color: #26a69a;
+}
+
+.view-btn:hover {
+  background-color: #e64a19;
+}
+
+.edit-btn:hover {
+  background-color: #00897b;
+}
