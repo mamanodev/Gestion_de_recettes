@@ -16,7 +16,7 @@ function AppContent() {
 
   // on cache la Navbar sur /login et /signup
   const hideNavbar =
-    location.pathname === "/login" || location.pathname === "/signup";
+    location.pathname === "/login" || location.pathname === "/signup" ||  location.pathname === "/" ;
 
   return (
     <>

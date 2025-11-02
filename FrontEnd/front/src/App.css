@@ -49,7 +49,7 @@ input {
 }
 
 button {
-  background-color: #ff7043;
+  background-color: #1f51ff;
   border: none;
   color: white;
   padding: 0.7rem 1.2rem;
@@ -60,11 +60,11 @@ button {
 }
 
 button:hover {
-  background-color: #e64a19;
+  background-color: #1f51ff;
 }
 
 a {
-  color: #ff7043;
+  color: #1f51ff;
   text-decoration: none;
 }
 a:hover {
@@ -83,7 +83,7 @@ a:hover {
 .logo {
   font-weight: 700;
   font-size: 1.1rem;
-  color: #ff7043;
+  color: #1f51ff;
 }
 
 .logo span {
@@ -98,7 +98,7 @@ a:hover {
 
 .logout-btn {
   margin-left: 1rem;
-  background: #ff7043;
+  background: #1f51ff;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -178,7 +178,7 @@ a:hover {
 .edit-btn {
   text-decoration: none;
   color: white;
-  background-color: #ff7043;
+  background-color: #1f51ff;
   border-radius: 6px;
   padding: 0.4rem 0.8rem;
   font-size: 0.9rem;
@@ -190,7 +190,7 @@ a:hover {
 }
 
 .view-btn:hover {
-  background-color: #e64a19;
+  background-color: #1f51ff;
 }
 
 .edit-btn:hover {
@@ -236,7 +236,7 @@ a:hover {
 .edit-btn {
   text-decoration: none;
   color: white;
-  background-color: #ff7043;
+  background-color: #1f51ff;
   border-radius: 6px;
   padding: 0.4rem 0.8rem;
   font-size: 0.9rem;
@@ -248,7 +248,7 @@ a:hover {
 }
 
 .view-btn:hover {
-  background-color: #e64a19;
+  background-color: #1f51ff;
 }
 
 .edit-btn:hover {
