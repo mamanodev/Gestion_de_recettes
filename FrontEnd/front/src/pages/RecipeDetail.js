@@ -1,64 +1,77 @@
-// src/pages/RecipeDetail.js
 import { useEffect, useState } from "react";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import api from "../api";
 
 export default function RecipeDetail() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const [recipe, setRecipe] = useState(null);
-  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
+  // Charger la recette par ID
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
         const res = await api.get(`/recipes/${id}`);
         setRecipe(res.data);
       } catch (err) {
-        setMessage("Recette introuvable ou vous n'êtes pas propriétaire.");
+        console.error("Erreur de chargement :", err);
       }
     };
     fetchRecipe();
   }, [id]);
 
-  const handleDelete = async () => {
-    if (!window.confirm("Supprimer cette recette ?")) return;
-    try {
-      await api.delete(`/recipes/${id}`);
-      navigate("/recipes");
-    } catch (err) {
-      setMessage("Erreur lors de la suppression");
-    }
-  };
-
-  if (!recipe) return <p>{message || "Chargement..."}</p>;
+  if (!recipe) return <p className="text-center mt-5">Chargement...</p>;
 
   return (
-    <div className="page-container">
-      <h2>{recipe.name}</h2>
-      {recipe.imageUrl && (
-        <img
-          src={recipe.imageUrl}
-          alt={recipe.name}
-          style={{ maxWidth: "300px", borderRadius: "10px" }}
-        />
-      )}
-      <p><strong>Catégorie :</strong> {recipe.category || "—"}</p>
-      <h4>Ingrédients</h4>
-      <p>{recipe.ingredients}</p>
-      <h4>Instructions</h4>
-      <p>{recipe.instructions}</p>
+    <div className="container mt-5">
+      {/* Bouton Retour */}
+      <button
+        className="btn btn-outline-secondary mb-4"
+        onClick={() => navigate(-1)} // 👈 Retour à la page précédente
+        title="Retour"
+      >
+        ← Retour
+      </button>
 
-      <div style={{ marginTop: "1rem" }}>
-        <Link to={`/recipes/edit/${recipe.id}`} className="btn-secondary">
-          Modifier
-        </Link>
-        <button onClick={handleDelete} style={{ marginLeft: "1rem" }}>
-          Supprimer
-        </button>
+      {/* Contenu principal */}
+      <div className="card shadow-sm p-4">
+        {recipe.imageUrl && (
+          <img
+            src={
+              recipe.imageUrl.startsWith("http")
+                ? recipe.imageUrl
+                : `http://localhost:3000${recipe.imageUrl}`
+            }
+            alt={recipe.name}
+            className="card-img-top mb-4 rounded"
+            style={{ maxHeight: "400px", objectFit: "cover" }}
+          />
+        )}
+
+        <h2 className="card-title mb-3">{recipe.name}</h2>
+        <p className="text-muted mb-2">
+          <strong>Catégorie :</strong> {recipe.category || "Non spécifiée"}
+        </p>
+        <p className="card-text">{recipe.description || "Aucune description disponible."}</p>
+
+        {recipe.ingredients && (
+          <>
+            <h5 className="mt-4">Ingrédients</h5>
+            <ul>
+              {recipe.ingredients.split(",").map((ing, i) => (
+                <li key={i}>{ing.trim()}</li>
+              ))}
+            </ul>
+          </>
+        )}
+
+        {recipe.instructions && (
+          <>
+            <h5 className="mt-4">Préparation</h5>
+            <p>{recipe.instructions}</p>
+          </>
+        )}
       </div>
-
-      {message && <p>{message}</p>}
     </div>
   );
 }

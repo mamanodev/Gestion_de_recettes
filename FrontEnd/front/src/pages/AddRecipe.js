@@ -1,4 +1,4 @@
-// src/pages/AddRecipe.js
+
 import { useState } from "react";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
@@ -29,7 +29,7 @@ export default function AddRecipe() {
   };
 
   return (
-    <div className="page-container">
+    <div className="container">
       <h2>Ajouter une recette</h2>
       <form onSubmit={handleSubmit} className="form">
         <input

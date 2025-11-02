@@ -21,41 +21,58 @@ export default function SignUp() {
     }
   };
 
-  return (<div className="auth-page">
-    <div className="auth-container">
-         <div>
-  <img
-    src="/assets/login.jpg"
-    alt="Login Illustration"
-    style={{ maxWidth: "300px", marginBottom: "1rem" }}
-  />
-</div>
-<div>
-       <h1><span>Recette</span>App</h1> 
-      <h2>S'incrire</h2>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Nom d'utilisateur"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Mot de passe"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button type="submit">S'inscrire</button>
-      </form>
-      <p>{message}</p>
-      <p>
-        Déjà un compte ? <Link to="/login">Se connecter</Link>
-      </p>
-    </div>
-    </div>
+  return (
+    <div className="auth-page">
+      <div className="auth-container">
+        <div className="w-50">
+          <img
+            src="/assets/login.jpg"
+            alt="Signup"
+            className="w-100 h-100 rounded"
+            style={{ objectFit: "cover" }}
+          />
+        </div>
+
+        <div className="d-flex flex-column  w-50 ms-4 px-4 pb-5 pt-3 rounded">
+          <span className=" mb-0 h1 fw-bold fs-1">
+            <span className="text-warning">RECETTE</span>APP
+          </span>
+
+          <h4 className="mt-5">S'inscrire</h4>
+          <form onSubmit={handleSubmit}>
+            <div className="mb-2">
+              <input
+                type="text"
+                className="form-control"
+                id="username"
+                placeholder="Nom d'utilisateur"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                required
+              />
+            </div>
+            <div className="mb-3">
+              <input
+                type="password"
+                className="form-control"
+                id="password"
+                placeholder="Mot de passe"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+            </div>
+            <button type="submit" className="btn btn-primary w-100">
+              S'inscrire
+            </button>
+          </form>
+
+          <p className="text-danger">{message}</p>
+          <p className="pb-2">
+            Déjà un compte ? <Link to="/login">Se connecter</Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

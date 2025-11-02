@@ -2,16 +2,18 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import { notFound, errorHandler } from './middlewares/errorHandler.js';
-import { sequelize } from './config/database.js';  
+import { sequelize } from './config/database.js';
 import userRoutes from './routes/userRoutes.js';
 import recipeRoutes from './routes/recipeRoutes.js';
+import { seedDatabaseIfEmpty } from './config/seedDatabase.js'; // 👈 import du seed
+
 
 //Initialisation de l'application Express
 const app = express();
 
 //Configuration de CORS
 const corsOptions = {
-  origin: '*', 
+  origin: '*',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   allowedHeaders: ['Content-Type, Authorization'],
 };
@@ -22,7 +24,7 @@ app.use(express.json());
 
 //Les Routes
 app.use('/api/users', userRoutes);
-app.use('/api/recipes',  recipeRoutes);
+app.use('/api/recipes', recipeRoutes);
 
 
 //Gestion des erreurs
@@ -39,15 +41,14 @@ async function syncDB() {
   try {
     await sequelize.authenticate();
     console.log("✅ Connexion réussie à la base MySQL !");
-    await sequelize.sync(); 
+    await sequelize.sync();
     console.log("✅ Tables créées avec succès !");
+    await seedDatabaseIfEmpty();
     app.listen(PORT, () => console.log(`🤖 Le serveur est lancé sur  http://localhost:${PORT}`))
   } catch (error) {
-    console.error("❌ Erreur :", error);
+    console.error(" Erreur :", error);
   }
-//   } finally {
-//     await sequelize.close();
-//   }
+
 }
 
 syncDB();

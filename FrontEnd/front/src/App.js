@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AuthProvider } from "./components/AuthContext";
 import PrivateRoute from "./components/PrivateRoutes";
 import Navbar from "./components/Navbar";
-
+import { ToastContainer } from "react-toastify";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
 import RecipeList from "./pages/RecipeList";
@@ -10,56 +10,63 @@ import AddRecipe from "./pages/AddRecipe";
 import EditRecipe from "./pages/EditRecipe";
 import RecipeDetail from "./pages/RecipeDetail";
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import Wrapper from "./components/Wrapper";
+import Footer from "./components/Footer";
 
 function AppContent() {
   const location = useLocation();
 
   // on cache la Navbar sur /login et /signup
   const hideNavbar =
-    location.pathname === "/login" || location.pathname === "/signup" ||  location.pathname === "/" ;
+    location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/";
 
   return (
     <>
+      <ToastContainer />
       {!hideNavbar && <Navbar />}
+      <Wrapper>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
 
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<SignUp />} />
-
-        <Route
-          path="/recipes"
-          element={
-            <PrivateRoute>
-              <RecipeList />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/recipes/add"
-          element={
-            <PrivateRoute>
-              <AddRecipe />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/recipes/edit/:id"
-          element={
-            <PrivateRoute>
-              <EditRecipe />
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/recipes/:id"
-          element={
-            <PrivateRoute>
-              <RecipeDetail />
-            </PrivateRoute>
-          }
-        />
-      </Routes>
+          <Route
+            path="/recipes"
+            element={
+              <PrivateRoute>
+                <RecipeList />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/recipes/add"
+            element={
+              <PrivateRoute>
+                <AddRecipe />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/recipes/edit/:id"
+            element={
+              <PrivateRoute>
+                <EditRecipe />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/recipes/:id"
+            element={
+              <PrivateRoute>
+                <RecipeDetail />
+              </PrivateRoute>
+            }
+          />
+        </Routes>
+      </Wrapper>
+      {!hideNavbar && <Footer />}
     </>
   );
 }
