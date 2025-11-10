@@ -2,7 +2,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: "https://gestion-de-recettes-1.onrender.com/api",
 });
 
 // Ajouter automatiquement le token à chaque requête si connecté
