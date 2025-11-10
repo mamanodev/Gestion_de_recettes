@@ -1,7 +1,28 @@
-
 import { useState } from "react";
+import styled from "styled-components";
 import api from "../api";
 import { useNavigate } from "react-router-dom";
+import Input from "../components/ui/Input";
+import Textarea from "../components/ui/Textarea";
+import Button from "../components/ui/Button";
+
+const Container = styled.div`
+  max-width: 720px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: ${({ theme }) => theme.shadow};
+  padding: 1.2rem;
+`;
+
+const Title = styled.h2`
+  margin: 0 0 1rem 0;
+`;
+
+const Form = styled.form`
+  display: grid;
+  gap: 12px;
+`;
 
 export default function AddRecipe() {
   const [name, setName] = useState("");
@@ -29,10 +50,10 @@ export default function AddRecipe() {
   };
 
   return (
-    <div className="container">
-      <h2>Ajouter une recette</h2>
-      <form onSubmit={handleSubmit} className="form">
-        <input
+    <Container>
+      <Title>Ajouter une recette</Title>
+      <Form onSubmit={handleSubmit}>
+        <Input
           type="text"
           placeholder="Nom de la recette"
           value={name}
@@ -40,7 +61,7 @@ export default function AddRecipe() {
           required
         />
 
-        <textarea
+        <Textarea
           rows={4}
           placeholder="Ingrédients"
           value={ingredients}
@@ -48,7 +69,7 @@ export default function AddRecipe() {
           required
         />
 
-        <textarea
+        <Textarea
           rows={4}
           placeholder="Instructions"
           value={instructions}
@@ -56,23 +77,24 @@ export default function AddRecipe() {
           required
         />
 
-        <input
+        <Input
           type="text"
           placeholder="Catégorie (ex: Italienne)"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         />
 
-        <input
+        <Input
           type="text"
           placeholder="Image (URL)"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
         />
 
-        <button type="submit">Enregistrer</button>
-      </form>
+        <Button type="submit">Enrégistrer</Button>
+      </Form>
       {message && <p>{message}</p>}
-    </div>
+    </Container>
   );
 }
+

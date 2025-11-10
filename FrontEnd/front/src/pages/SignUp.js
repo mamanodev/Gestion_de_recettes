@@ -1,7 +1,51 @@
 import { useState, useContext } from "react";
+import styled from "styled-components";
 import { AuthContext } from "../components/AuthContext";
 import api from "../api";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Input from "../components/ui/Input";
+import Button from "../components/ui/Button";
+
+const Page = styled.main`
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+`;
+
+const Container = styled.section`
+  width: 100%;
+  max-width: 300px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: ${({ theme }) => theme.shadow};
+  display: flex;
+  overflow: hidden;
+`;
+
+
+
+const FormBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 1.5rem 2rem 1.5rem;
+`;
+
+
+const Title = styled.h4`
+  margin-top: 2rem;
+  color: #2c2c2c;
+  font-weight: 600;
+`;
+
+const Field = styled.div`
+  margin-bottom: 12px;
+`;
+
+const ErrorMsg = styled.p`
+  color: #dc2626;
+`;
 
 export default function SignUp() {
   const [username, setUsername] = useState("");
@@ -17,62 +61,46 @@ export default function SignUp() {
       login(res.data.token, res.data.user);
       navigate("/recipes");
     } catch (err) {
-      setMessage("Erreur : utilisateur déjà existant ou invalide.");
+      setMessage("Erreur : utilisateur déja existant ou invalide.");
     }
   };
 
   return (
-    <div className="auth-page">
-      <div className="auth-container">
-        <div className="w-50">
-          <img
-            src="/assets/login.jpg"
-            alt="Signup"
-            className="w-100 h-100 rounded"
-            style={{ objectFit: "cover" }}
-          />
-        </div>
+    <Page>
+      <Container>
 
-        <div className="d-flex flex-column  w-50 ms-4 px-4 pb-5 pt-3 rounded">
-          <span className=" mb-0 h1 fw-bold fs-1">
-            <span className="text-warning">RECETTE</span>APP
-          </span>
-
-          <h4 className="mt-5">S'inscrire</h4>
+        <FormBox>
+          <Title>S'inscrire</Title>
           <form onSubmit={handleSubmit}>
-            <div className="mb-2">
-              <input
+            <Field>
+              <Input
                 type="text"
-                className="form-control"
                 id="username"
                 placeholder="Nom d'utilisateur"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 required
               />
-            </div>
-            <div className="mb-3">
-              <input
+            </Field>
+            <Field>
+              <Input
                 type="password"
-                className="form-control"
                 id="password"
                 placeholder="Mot de passe"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
-            </div>
-            <button type="submit" className="btn btn-primary w-100">
+            </Field>
+            <Button type="submit" style={{ width: '100%' }}>
               S'inscrire
-            </button>
+            </Button>
           </form>
 
-          <p className="text-danger">{message}</p>
-          <p className="pb-2">
-            Déjà un compte ? <Link to="/login">Se connecter</Link>
-          </p>
-        </div>
-      </div>
-    </div>
+          <ErrorMsg>{message}</ErrorMsg>
+
+        </FormBox>
+      </Container>
+    </Page>
   );
 }

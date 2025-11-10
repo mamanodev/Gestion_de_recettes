@@ -1,7 +1,29 @@
 // src/pages/EditRecipe.js
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../api";
+import Input from "../components/ui/Input";
+import Textarea from "../components/ui/Textarea";
+import Button from "../components/ui/Button";
+
+const Container = styled.div`
+  max-width: 720px;
+  margin: 2rem auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: ${({ theme }) => theme.shadow};
+  padding: 1.2rem;
+`;
+
+const Title = styled.h2`
+  margin: 0 0 1rem 0;
+`;
+
+const Form = styled.form`
+  display: grid;
+  gap: 12px;
+`;
 
 export default function EditRecipe() {
   const { id } = useParams();
@@ -48,10 +70,10 @@ export default function EditRecipe() {
   };
 
   return (
-    <div className="page-container">
-      <h2>Modifier la recette</h2>
-      <form onSubmit={handleSubmit} className="form">
-        <input
+    <Container>
+      <Title>Modifier la recette</Title>
+      <Form onSubmit={handleSubmit}>
+        <Input
           type="text"
           placeholder="Nom de la recette"
           value={name}
@@ -59,15 +81,15 @@ export default function EditRecipe() {
           required
         />
 
-        <textarea
+        <Textarea
           rows={4}
-          placeholder="Ingrédients"
+          placeholder="Ingrécdients"
           value={ingredients}
           onChange={(e) => setIngredients(e.target.value)}
           required
         />
 
-        <textarea
+        <Textarea
           rows={4}
           placeholder="Instructions"
           value={instructions}
@@ -75,23 +97,24 @@ export default function EditRecipe() {
           required
         />
 
-        <input
+        <Input
           type="text"
           placeholder="Catégorie"
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         />
 
-        <input
+        <Input
           type="text"
           placeholder="Image (URL)"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
         />
 
-        <button type="submit">Mettre à jour</button>
-      </form>
+        <Button type="submit">Mettre à jour</Button>
+      </Form>
       {message && <p>{message}</p>}
-    </div>
+    </Container>
   );
 }
+

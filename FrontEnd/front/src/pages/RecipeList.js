@@ -1,13 +1,42 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import styled from "styled-components";
 import api from "../api";
 import Card from "../components/Card";
 import ConfirmModal from "../components/ConfirmModal";
 import { toast } from "react-toastify";
-import { Trash2, SquarePen, Search } from 'lucide-react';
+import Input from "../components/ui/Input";
+
+const Container = styled.div`
+  max-width: 1400px;
+  margin: 2rem ;
+  padding: 0 1rem;
+`;
+
+const Header = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+`;
 
 
+const SearchRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  max-width: 1400px;
+`;
 
+const Grid = styled.div`
+ display: grid;
+grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+gap: 1.25rem;
+margin-top: 1rem;
+
+`;
 
 export default function RecipeList() {
   const [recipes, setRecipes] = useState([]);
@@ -33,7 +62,7 @@ export default function RecipeList() {
 
   // Filtrage
   const handleSearch = (e) => {
-    const value = e.target.value.toLowerCase();
+    const value = (e?.target?.value ?? search).toLowerCase();
     setSearch(value);
     setFiltered(recipes.filter((r) => r.name.toLowerCase().includes(value)));
   };
@@ -50,7 +79,7 @@ export default function RecipeList() {
       await api.delete(`/recipes/${selectedRecipe.id}`);
       setFiltered(filtered.filter((r) => r.id !== selectedRecipe.id));
       setShowModal(false);
-      toast.success(`Recette "${selectedRecipe.name}" supprimée avec succès 🗑️`);
+      toast.success(`Recette "${selectedRecipe.name}" supprimé avec succès !`);
     } catch (err) {
       console.error("Erreur de suppression :", err);
       toast.error("Erreur lors de la suppression ");
@@ -58,56 +87,56 @@ export default function RecipeList() {
   };
 
   return (
-    <div className="container mt-4 ">
-      <div className="d-flex flex-column justify-content-start gap-3 align-items-center mb-3">
-        <span className="text-warning fw-semibold h4">MES RECETTES </span>
-        <div className="d-flex align-items-center justify-content-center w-75 gap-3">
-          <input
+    <Container>
+      <Header>
+
+
+        <SearchRow>
+          <Input
             type="text"
             placeholder="Recherche par nom..."
             value={search}
             onChange={handleSearch}
-            className="form-control w-50"
+            style={{ maxWidth: '480px' }}
           />
-          <button className="btn btn-primary" onClick={handleSearch}><Search /></button></div>
-      </div>
+        </SearchRow>
+      </Header>
 
-      {/* Grille responsive */}
-      <div className="row g-4 mt-5">
+      <Grid>
+
         {filtered.length > 0 ? (
           filtered.map((r) => (
-            <div key={r.id} className="col-12 col-sm-6 col-md-4 col-lg-3">
-              <Card
-                image={
-                  r.imageUrl
-                    ? r.imageUrl.startsWith("http")
-                      ? r.imageUrl
-                      : `http://localhost:3000${r.imageUrl}`
-                    : "/assets/placeholder.jpg"
-                }
-                title={r.name}
-                text={r.category || "Sans catégorie"}
-                onClick={() => navigate(`/recipes/${r.id}`)}
-                buttons={[
-                  {
-                    label: <SquarePen />,
-                    type: "link",
-                    href: `/recipes/edit/${r.id}`,
-                    variant: "warning",
-                  },
-                  {
-                    label: <Trash2 />,
-                    onClick: () => handleDeleteClick(r),
-                    variant: "danger",
-                  },
-                ]}
-              />
-            </div>
+            <Card
+              key={r.id}
+              image={
+                r.imageUrl
+                  ? r.imageUrl.startsWith("http")
+                    ? r.imageUrl
+                    : `http://localhost:3000${r.imageUrl}`
+                  : "/assets/placeholder.jpg"
+              }
+              title={r.name}
+              text={r.category || "Sans catégorie"}
+              onClick={() => navigate(`/recipes/${r.id}`)}
+              buttons={[
+                {
+                  label: "Modifier",
+                  type: "link",
+                  href: `/recipes/edit/${r.id}`,
+                  variant: "warning",
+                },
+                {
+                  label: "Supprimer",
+                  onClick: () => handleDeleteClick(r),
+                  variant: "danger",
+                },
+              ]}
+            />
           ))
         ) : (
-          <p className="text-center">Aucune recette trouvée 🍳</p>
+          <p>Aucune recette trouvée</p>
         )}
-      </div>
+      </Grid>
 
       {/*  Modal de confirmation */}
       <ConfirmModal
@@ -116,6 +145,6 @@ export default function RecipeList() {
         onConfirm={confirmDelete}
         message={`Voulez-vous vraiment supprimer la recette "${selectedRecipe?.name}" ?`}
       />
-    </div>
+    </Container>
   );
 }

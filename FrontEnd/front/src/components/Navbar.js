@@ -1,12 +1,56 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useContext } from "react";
+import styled from "styled-components";
 import { AuthContext } from "./AuthContext";
-import { CircleUserRound } from 'lucide-react';
 
+const Nav = styled.nav`
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: #fff;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.border};
+`;
+
+const Bar = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.8rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+`;
+
+const Brand = styled.span`
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: ${({ theme }) => theme.colors.text};
+`;
+
+
+const NavRight = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+`;
+
+const NavLink = styled(Link)`
+  color: ${({ theme }) => theme.colors.text};
+  text-decoration: none;
+  &:hover { text-decoration: underline; }
+`;
+
+const LogoutButton = styled.button`
+  padding: 0.35rem 0.7rem;
+  border: 0px solid ${({ theme }) => theme.colors.primary};
+  background: transparent;
+    font-size: 1rem;
+  color: ${({ theme }) => theme.colors.text};
+  cursor: pointer;
+`;
 
 
 export default function Navbar() {
-  const { token, logout, user } = useContext(AuthContext); // 👈 récupère l'utilisateur
+  const { token, logout } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -15,45 +59,31 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg bg-white border-bottom sticky-top">
-      <div className="container d-flex justify-content-between align-items-center py-2">
-
-        <Link to="/recipes" className="text-decoration-none">
-          <span className="navbar-brand mb-0 h1 fw-bold fs-4">
-            <span className="text-warning">RECETTE</span>APP
-          </span>
+    <Nav>
+      <Bar>
+        <Link to="/recipes" style={{ textDecoration: 'none' }}>
+          <Brand>
+            Recette App
+          </Brand>
         </Link>
 
-
-        <div className="d-flex align-items-center gap-3">
-          {token && (
+        <NavRight>
+          {token ? (
             <>
-              <Link to="/recipes" className="text-decoration-none text-dark ">
-                Recettes
-              </Link>
-              <Link to="/recipes/add" className="text-decoration-none text-dark ">
-                Ajouter recette
-              </Link>
+              <NavLink to="/recipes">Recettes</NavLink>
+              <NavLink to="/recipes/add">Ajouter recette</NavLink>
 
 
-              {user && (
-                <div className="d-flex align-items-center ms-5 text-secondary">
-                  <CircleUserRound />
-                  <span className="fw-semibold text-secondary">{user.username}</span>
-                </div>
-              )}
-
-
-              <button
-                onClick={handleLogout}
-                className="btn btn-outline-primary btn-sm ms-2"
-              >
-                Déconnexion
-              </button>
+              <LogoutButton onClick={handleLogout}>Se deconnecter </LogoutButton>
             </>
-          )}
-        </div>
-      </div>
-    </nav>
+          ) : (<>
+
+            <NavLink to="/login">Se connecter</NavLink>
+            <NavLink to="/signup">S'inscrire</NavLink>
+          </>)}
+        </NavRight>
+      </Bar>
+    </Nav>
   );
 }
+

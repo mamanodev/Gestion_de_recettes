@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "./components/AuthContext";
 import PrivateRoute from "./components/PrivateRoutes";
 import Navbar from "./components/Navbar";
@@ -9,23 +9,18 @@ import RecipeList from "./pages/RecipeList";
 import AddRecipe from "./pages/AddRecipe";
 import EditRecipe from "./pages/EditRecipe";
 import RecipeDetail from "./pages/RecipeDetail";
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import "bootstrap/dist/js/bootstrap.bundle.min";
 import Wrapper from "./components/Wrapper";
-import Footer from "./components/Footer";
+import { ThemeProvider } from "styled-components";
+import GlobalStyle from "./styles/GlobalStyle";
+import theme from "./styles/theme";
 
 function AppContent() {
-  const location = useLocation();
 
-  // on cache la Navbar sur /login et /signup
-  const hideNavbar =
-    location.pathname === "/login" || location.pathname === "/signup" || location.pathname === "/";
 
   return (
     <>
       <ToastContainer />
-      {!hideNavbar && <Navbar />}
+      <Navbar />
       <Wrapper>
         <Routes>
           <Route path="/" element={<Login />} />
@@ -66,7 +61,7 @@ function AppContent() {
           />
         </Routes>
       </Wrapper>
-      {!hideNavbar && <Footer />}
+
     </>
   );
 }
@@ -74,9 +69,12 @@ function AppContent() {
 export default function App() {
   return (
     <AuthProvider>
-      <BrowserRouter>
-        <AppContent />
-      </BrowserRouter>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <BrowserRouter>
+          <AppContent />
+        </BrowserRouter>
+      </ThemeProvider>
     </AuthProvider>
   );
 }

@@ -15,7 +15,7 @@ export const seedDatabaseIfEmpty = async () => {
                     instructions: "ytyt",
                     category: "Haïti",
                     imageUrl:
-                        "https://i.ytimg.com/vi/bfUOGtbGemg/maxresdefault.jpg",
+                        "https://i.ytimg.com/vi/q-tDCe3GYSc/maxresdefault.jpg",
                     userId: 1,
                     createdAt: new Date(),
                     updatedAt: new Date(),
@@ -28,7 +28,7 @@ export const seedDatabaseIfEmpty = async () => {
                         "GROUND BEEF 300g, PANCETTA 150g, TOMATO PASSATA 300g, ...",
                     category: "Italien",
                     imageUrl:
-                        "https://static.fanpage.it/wp-content/uploads/sites/22/2021/06/spaghetti-bolognese.jpg",
+                        "https://supervalu.ie/thumbnail/800x600/var/files/real-food/recipes/Uploaded-2020/spaghetti-bolognese-recipe.jpg",
                     userId: 1,
                     createdAt: new Date(),
                     updatedAt: new Date(),
@@ -39,7 +39,7 @@ export const seedDatabaseIfEmpty = async () => {
                     instructions: "fdhgfdh",
                     category: "Fritay",
                     imageUrl:
-                        "https://i.ytimg.com/vi/GjpnsqYOv_g/maxresdefault.jpg",
+                        "https://res.cloudinary.com/htt8g4cd/image/upload/w_1920,h_1280,c_lfill,ar_3:2,g_center,f_auto,q_auto/wp/04_24_griot_with_pikliz_hero_photo_nicoschinco_1920x1280",
                     userId: 1,
                     createdAt: new Date(),
                     updatedAt: new Date(),
@@ -50,7 +50,7 @@ export const seedDatabaseIfEmpty = async () => {
                     instructions: "gfdg",
                     category: "Plat Haïtien",
                     imageUrl:
-                        "https://i.pinimg.com/originals/71/14/d9/7114d90d509d311070e0e88f5a5456df.jpg",
+                        "https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=90/media/photosV2/ca402aaa-f9c5-4a0b-9097-138490b45a3b-retina-large.jpg",
                     userId: 1,
                     createdAt: new Date(),
                     updatedAt: new Date(),
@@ -63,7 +63,7 @@ export const seedDatabaseIfEmpty = async () => {
                         "Summer Corn Salad – Save some peaches, basil, and red peppers! Orzo Salad – Save some basil and mint...",
                     category: "Italien",
                     imageUrl:
-                        "https://images7.alphacoders.com/596/thumb-1920-596343.jpg",
+                        "https://www.unileverfoodsolutions.co.id/dam/global-ufs/mcos/SEA/calcmenu/recipes/ID-recipes/sacks/Margherita-Pizza/Pizza%20Margaretha%20(Recipe%20Page).jpg",
                     userId: 1,
                     createdAt: new Date(),
                     updatedAt: new Date(),
@@ -76,7 +76,7 @@ export const seedDatabaseIfEmpty = async () => {
                         "400g of fresh tagliatelle, 100g of spinach shoots, 200g of mushrooms, 15 cherry tomatoes...",
                     category: "Cuisine Garlic & Fine Herbs",
                     imageUrl:
-                        "https://www.boursin.ca/wp-content/uploads/2023/02/Brs-Pates_banner.png",
+                        "https://files.mob-cdn.co.uk/recipes/2024/09/Tagliatelle-Bolognese-Recipe.jpg",
                     userId: 1,
                     createdAt: new Date(),
                     updatedAt: new Date(),
@@ -89,7 +89,7 @@ export const seedDatabaseIfEmpty = async () => {
                         "ÉTAPE 1 – Préparer et nettoyer le Djondjon... ÉTAPE 2 – Laisser tremper... ÉTAPE 3 – Recueillir l’eau de Djondjon...",
                     category: "Plat Haïtien",
                     imageUrl:
-                        "https://gleepad.com/wp-content/uploads/2024/02/riz-djondjon-768x768.png",
+                        "https://www.lunionsuite.com/wp-content/uploads/2017/01/a54a2c36691f6179a9530271c18d9fca.jpg",
                     userId: 1,
                     createdAt: new Date(),
                     updatedAt: new Date(),
@@ -101,7 +101,7 @@ export const seedDatabaseIfEmpty = async () => {
                         "It’s Fritay Friday!! Come try a plate or a platter to share. To Go only.",
                     category: "Caribbean",
                     imageUrl:
-                        "https://i.pinimg.com/originals/ec/1f/14/ec1f1403188d1fffc5a7bc033d985005.jpg",
+                        "https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=90/media/photosV2/04bdf78f-f3f6-4db4-9e7c-489ad76d14da-retina-large.jpg",
                     userId: 1,
                     createdAt: new Date(),
                     updatedAt: new Date(),

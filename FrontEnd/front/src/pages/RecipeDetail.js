@@ -1,6 +1,37 @@
 import { useEffect, useState } from "react";
+import styled from "styled-components";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../api";
+
+const Container = styled.div`
+  max-width: 900px;
+  margin: 2rem auto;
+`;
+
+const BackButton = styled.button`
+  border: 1px solid #cbd5e1;
+  background: transparent;
+  color: #334155;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 1rem;
+`;
+
+const Card = styled.div`
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: ${({ theme }) => theme.shadow};
+  padding: 1.5rem;
+`;
+
+const Cover = styled.img`
+  width: 100%;
+  max-height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+`;
 
 export default function RecipeDetail() {
   const { id } = useParams();
@@ -20,43 +51,40 @@ export default function RecipeDetail() {
     fetchRecipe();
   }, [id]);
 
-  if (!recipe) return <p className="text-center mt-5">Chargement...</p>;
+  if (!recipe) return <p>Chargement...</p>;
 
   return (
-    <div className="container mt-5">
+    <Container>
       {/* Bouton Retour */}
-      <button
-        className="btn btn-outline-secondary mb-4"
-        onClick={() => navigate(-1)} // 👈 Retour à la page précédente
+      <BackButton
+        onClick={() => navigate(-1)}
         title="Retour"
       >
-        ← Retour
-      </button>
+        Retour
+      </BackButton>
 
       {/* Contenu principal */}
-      <div className="card shadow-sm p-4">
+      <Card>
         {recipe.imageUrl && (
-          <img
+          <Cover
             src={
               recipe.imageUrl.startsWith("http")
                 ? recipe.imageUrl
                 : `http://localhost:3000${recipe.imageUrl}`
             }
             alt={recipe.name}
-            className="card-img-top mb-4 rounded"
-            style={{ maxHeight: "400px", objectFit: "cover" }}
           />
         )}
 
-        <h2 className="card-title mb-3">{recipe.name}</h2>
-        <p className="text-muted mb-2">
-          <strong>Catégorie :</strong> {recipe.category || "Non spécifiée"}
+        <h2>{recipe.name}</h2>
+        <p>
+          <strong>Catégorie :</strong> {recipe.category || "Non spéccifiée"}
         </p>
-        <p className="card-text">{recipe.description || "Aucune description disponible."}</p>
+        <p>{recipe.description || "Aucune description disponible."}</p>
 
         {recipe.ingredients && (
           <>
-            <h5 className="mt-4">Ingrédients</h5>
+            <h5>Ingrédients</h5>
             <ul>
               {recipe.ingredients.split(",").map((ing, i) => (
                 <li key={i}>{ing.trim()}</li>
@@ -67,11 +95,11 @@ export default function RecipeDetail() {
 
         {recipe.instructions && (
           <>
-            <h5 className="mt-4">Préparation</h5>
+            <h5>Préparation</h5>
             <p>{recipe.instructions}</p>
           </>
         )}
-      </div>
-    </div>
+      </Card>
+    </Container>
   );
 }

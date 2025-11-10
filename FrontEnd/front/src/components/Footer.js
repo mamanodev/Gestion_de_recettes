@@ -1,24 +1,52 @@
 import React from "react";
+import styled from "styled-components";
+
+const Bar = styled.footer`
+  background: ${({ theme }) => theme.colors.warning};
+  border-top: 1px solid ${({ theme }) => theme.colors.border};
+  margin-top: 2rem;
+`;
+
+const Inner = styled.div`
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+`;
+
+const Title = styled.h5`
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0;
+`;
+
+const Accent = styled.span`
+  color: #ffffff;
+`;
+
+const Small = styled.small`
+  display: block;
+  color: #6b7280;
+`;
 
 export default function Footer() {
-    return (
-        <footer className="bg-warning border-top mt-5">
-            <div className="container-fluid py-3">
-                <div className="d-flex  align-items-center text-center text-md-center px-3">
-
-                    <div className="col-12">
-                        <h5 className="fw-bold text-dark mb-0">
-                            <span className="text-white">RECETTE</span>APP
-                        </h5>
-                        <small className="text-muted">
-                            Découvrez et partagez vos recettes préférées !<br></br>
-
-                            &copy; {new Date().getFullYear()} RecetteApp — Créé avec ❤️ par Ermane Veillard
-                        </small>
-                    </div>
-
-                </div>
-            </div>
-        </footer>
-    );
+  return (
+    <Bar>
+      <Inner>
+        <div>
+          <Title>
+            <Accent>RECETTE</Accent>APP
+          </Title>
+          <Small>
+            DAccouvrez et partagez vos recettes prAcfAcrAces !<br />
+            &copy; {new Date().getFullYear()} RecetteApp �?" CrAcAc avec �?\u000f�,? par Ermane Veillard
+          </Small>
+        </div>
+      </Inner>
+    </Bar>
+  );
 }
+
