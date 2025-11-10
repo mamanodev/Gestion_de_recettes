@@ -16,7 +16,7 @@ export const seedDatabaseIfEmpty = async () => {
                     category: "Haïti",
                     imageUrl:
                         "https://i.ytimg.com/vi/q-tDCe3GYSc/maxresdefault.jpg",
-                    userId: 1,
+                 
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
@@ -29,7 +29,7 @@ export const seedDatabaseIfEmpty = async () => {
                     category: "Italien",
                     imageUrl:
                         "https://supervalu.ie/thumbnail/800x600/var/files/real-food/recipes/Uploaded-2020/spaghetti-bolognese-recipe.jpg",
-                    userId: 1,
+                 
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
@@ -40,7 +40,7 @@ export const seedDatabaseIfEmpty = async () => {
                     category: "Fritay",
                     imageUrl:
                         "https://res.cloudinary.com/htt8g4cd/image/upload/w_1920,h_1280,c_lfill,ar_3:2,g_center,f_auto,q_auto/wp/04_24_griot_with_pikliz_hero_photo_nicoschinco_1920x1280",
-                    userId: 1,
+                   
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
@@ -51,7 +51,7 @@ export const seedDatabaseIfEmpty = async () => {
                     category: "Plat Haïtien",
                     imageUrl:
                         "https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=90/media/photosV2/ca402aaa-f9c5-4a0b-9097-138490b45a3b-retina-large.jpg",
-                    userId: 1,
+       
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
@@ -64,7 +64,7 @@ export const seedDatabaseIfEmpty = async () => {
                     category: "Italien",
                     imageUrl:
                         "https://www.unileverfoodsolutions.co.id/dam/global-ufs/mcos/SEA/calcmenu/recipes/ID-recipes/sacks/Margherita-Pizza/Pizza%20Margaretha%20(Recipe%20Page).jpg",
-                    userId: 1,
+           
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
@@ -77,7 +77,7 @@ export const seedDatabaseIfEmpty = async () => {
                     category: "Cuisine Garlic & Fine Herbs",
                     imageUrl:
                         "https://files.mob-cdn.co.uk/recipes/2024/09/Tagliatelle-Bolognese-Recipe.jpg",
-                    userId: 1,
+               
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
@@ -90,7 +90,7 @@ export const seedDatabaseIfEmpty = async () => {
                     category: "Plat Haïtien",
                     imageUrl:
                         "https://www.lunionsuite.com/wp-content/uploads/2017/01/a54a2c36691f6179a9530271c18d9fca.jpg",
-                    userId: 1,
+             
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
@@ -102,7 +102,7 @@ export const seedDatabaseIfEmpty = async () => {
                     category: "Caribbean",
                     imageUrl:
                         "https://img.cdn4dd.com/p/fit=cover,width=1200,height=1200,format=auto,quality=90/media/photosV2/04bdf78f-f3f6-4db4-9e7c-489ad76d14da-retina-large.jpg",
-                    userId: 1,
+           
                     createdAt: new Date(),
                     updatedAt: new Date(),
                 },
